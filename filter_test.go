@@ -15,3 +15,14 @@ func TestGetFilter(t *testing.T) {
 		t.Fatal("AVFilter is not initialized")
 	}
 }
+
+func TestNewFilterInOut(t *testing.T) {
+	f := assert(NewFilterInOut()).(*AVFilterInOut)
+	if f.avFilterInOut == nil {
+		t.Fatal("NewFilterInOut is not created")
+	}
+	f.Free()
+	if f.avFilterInOut != nil {
+		t.Error("avFilterInOut should be nil after Free")
+	}
+}
